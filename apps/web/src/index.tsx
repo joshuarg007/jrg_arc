@@ -5,6 +5,7 @@ import { createRoot } from "react-dom/client";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { useSceneManager } from "./hooks/useSceneManager";
 import { TorusPulse } from "@core";
+import { setupAIBridge } from "@core/scene/AIBridge";
 
 function SpinningTorus({ manager }: { manager: any }) {
   const ref = React.useRef<any>(null);
@@ -121,8 +122,7 @@ function RiftOverlay({ onDone }: { onDone: () => void }) {
         ["--cy" as any]: "50%",
         ["--rimA" as any]: 0.22,
         ["--rimJ" as any]: 0.0,
-        background: `
-          radial-gradient(circle at var(--cx) var(--cy),
+        background: `radial-gradient(circle at var(--cx) var(--cy),
             rgba(0,0,0,0) 0,
             rgba(0,0,0,0) calc(var(--r) - 1.5vmin),
             rgba(46,255,255,var(--rimA)) calc(var(--r) + calc(var(--rimJ) * 1vmin)),
@@ -174,3 +174,5 @@ function App() {
 
 const container = document.getElementById("root");
 if (container) createRoot(container).render(<App />);
+
+if (import.meta.env.DEV) setupAIBridge();
