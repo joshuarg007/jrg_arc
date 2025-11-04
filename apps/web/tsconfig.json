@@ -2,13 +2,15 @@
   "extends": "../../packages/config/tsconfig.base.json",
   "compilerOptions": {
     "outDir": "dist",
-    "rootDir": "src",
+    "rootDir": "../..",
     "baseUrl": ".",
     "paths": {
+      "@core": ["../../packages/core/src/index.ts"],
       "@core/*": ["../../packages/core/src/*"],
+      "@ui": ["../../packages/ui/src/index.ts"],
       "@ui/*": ["../../packages/ui/src/*"]
     },
     "types": ["vite/client", "node", "react", "react-dom"]
   },
-  "include": ["src"]
+  "include": ["src", "../../packages/core/src", "../../packages/ui/src"]
 }

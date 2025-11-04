@@ -3,17 +3,27 @@
 import React from "react";
 import { createRoot } from "react-dom/client";
 import { Canvas, useFrame } from "@react-three/fiber";
+import { useSceneManager } from "./hooks/useSceneManager";
+import { TorusPulse } from "@core";
 
-function SpinningTorus() {
+function SpinningTorus({ manager }: { manager: any }) {
   const ref = React.useRef<any>(null);
+
   useFrame((state) => {
     const t = state.clock.getElapsedTime();
+
+    // Pull values from SceneManager store (with safe fallbacks pre-first tick)
+    const rotX = (manager?.get("torus.rotX") as number) ?? t * 0.3;
+    const rotY = (manager?.get("torus.rotY") as number) ?? t * 0.5;
+    const breathZ = (manager?.get("torus.breathZ") as number) ?? -1 + Math.sin(t * 0.6) * 0.15;
+
     if (ref.current) {
-      ref.current.rotation.x = t * 0.3;
-      ref.current.rotation.y = t * 0.5;
-      ref.current.position.z = -1 + Math.sin(t * 0.6) * 0.15; // subtle breathing
+      ref.current.rotation.x = rotX;
+      ref.current.rotation.y = rotY;
+      ref.current.position.z = breathZ;
     }
   });
+
   return (
     <mesh ref={ref}>
       <torusKnotGeometry args={[1, 0.3, 128, 32]} />
@@ -35,14 +45,11 @@ function RiftOverlay({ onDone }: { onDone: () => void }) {
     const flicker = (t0: number) => {
       const now = performance.now();
       const t = (now - t0) / 1000;
-      // lightweight pseudo-noise via incommensurate sin/cos waves
       const n =
         Math.sin(t * 3.1) +
         Math.sin(t * 2.27 + 1.3) * 0.5 +
         Math.cos(t * 1.73 + 0.7) * 0.25;
-      // opacity range ~0.18–0.28
       const alpha = 0.18 + (n * 0.5 + 0.5) * 0.1;
-      // radius jitter in vmin scale, small and smooth
       const jitter = (Math.sin(t * 0.6) + Math.sin(t * 0.13 + 2)) * 0.35;
       el.style.setProperty("--rimA", alpha.toFixed(3));
       el.style.setProperty("--rimJ", jitter.toFixed(3));
@@ -112,9 +119,8 @@ function RiftOverlay({ onDone }: { onDone: () => void }) {
         ["--r" as any]: "0vmin",
         ["--cx" as any]: "50%",
         ["--cy" as any]: "50%",
-        ["--rimA" as any]: 0.22, // rim base alpha
-        ["--rimJ" as any]: 0.0, // rim radius jitter (vmin multiplier)
-        // Two-layer radial: primary mask ring + faint halo with animated alpha/jitter
+        ["--rimA" as any]: 0.22,
+        ["--rimJ" as any]: 0.0,
         background: `
           radial-gradient(circle at var(--cx) var(--cy),
             rgba(0,0,0,0) 0,
@@ -145,6 +151,14 @@ function RiftOverlay({ onDone }: { onDone: () => void }) {
 
 function App() {
   const [open, setOpen] = React.useState(false);
+  const sceneManager = useSceneManager();
+
+  // Register TorusPulse once, clean up on unmount
+  React.useEffect(() => {
+    const pulse = new TorusPulse();
+    sceneManager.add(pulse);
+    return () => sceneManager.remove(pulse.id);
+  }, [sceneManager]);
 
   return (
     <main style={{ height: "100vh", background: "#000", margin: 0 }}>
@@ -152,7 +166,7 @@ function App() {
       <Canvas camera={{ position: [0, 0, 3.2], fov: 55 }}>
         <ambientLight intensity={0.6} />
         <directionalLight position={[3, 3, 3]} intensity={1.2} />
-        <SpinningTorus />
+        <SpinningTorus manager={sceneManager} />
       </Canvas>
     </main>
   );
