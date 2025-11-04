@@ -1,0 +1,27 @@
+{
+  "name": "jrg_arc",
+  "version": "0.0.1",
+  "private": true,
+  "description": "Joshua Gutierrez — Quantum Gallery / full-stack AI + 3D platform",
+  "type": "module",
+  "license": "MIT",
+  "engines": {
+    "node": ">=20.11 <21"
+  },
+  "packageManager": "pnpm@9.12.0",
+  "scripts": {
+    "dev": "echo \"(placeholder) dev server not set up yet\"",
+    "build": "echo \"(placeholder) build not set up yet\"",
+    "start": "echo \"(placeholder) start not set up yet\"",
+    "lint": "echo \"(placeholder) lint not set up yet\"",
+    "test": "echo \"(placeholder) tests not set up yet\""
+  },
+  "devDependencies": {
+    "@types/node": "^24.10.0",
+    "@types/three": "^0.181.0",
+    "@vitejs/plugin-react": "^5.1.0",
+    "tsx": "^4.20.6",
+    "typescript": "^5.9.3",
+    "vite": "^7.1.12"
+  }
+}
