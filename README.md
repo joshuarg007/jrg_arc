@@ -52,6 +52,29 @@ Then open [http://localhost:5173](http://localhost:5173).
 ### Build
 ```bash
 pnpm build
+# Or without pnpm:
+npx vite build --config apps/web/vite.config.ts
+```
+
+### Production Deployment (cPanel/GoDaddy)
+
+```bash
+# Create deployment zip (from project root)
+cd apps/web/dist
+zip -r ~/Downloads/portfolio-build.zip . -x "packages/*" -x "apps/*" -x "REQUIRED_IMAGES.txt"
+```
+
+**Deploy steps:**
+1. Upload `portfolio-build.zip` to `public_html` via cPanel File Manager
+2. Extract files directly (files should be at root level, not in a subfolder)
+3. Set `.htaccess` permissions to `644`
+
+**If you get a 403 Forbidden error**, replace `.htaccess` with:
+```apache
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^ index.html [L]
 ```
 
 ### Testing

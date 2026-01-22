@@ -6,6 +6,12 @@
       name="viewport"
       content="width=device-width, initial-scale=1.0" />
     <title>Quantum Gallery</title>
+    <style>
+      /* Hide cursor immediately - custom cursor loads with app */
+      @media (pointer: fine) {
+        * { cursor: none !important; }
+      }
+    </style>
   </head>
   <body style="margin:0;background:#000;">
     <div id="root"></div>
