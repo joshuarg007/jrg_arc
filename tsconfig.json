@@ -1,6 +1,31 @@
-﻿{
-  "files": [],
+{
   "compilerOptions": {
-    "composite": false
-  }
+    "target": "ES2022",
+    "lib": ["ES2022", "DOM"],
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "jsx": "react-jsx",
+    "strict": true,
+    "noUncheckedIndexedAccess": false,
+    "noImplicitOverride": true,
+    "skipLibCheck": true,
+    "resolveJsonModule": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "isolatedModules": true,
+    "baseUrl": ".",
+    "paths": {
+      "@core": ["packages/core/src/index.ts"],
+      "@core/*": ["packages/core/src/*"],
+      "@ui": ["packages/ui/src/index.ts"],
+      "@ui/*": ["packages/ui/src/*"]
+    }
+  },
+  "include": [
+    "apps/web/src",
+    "packages/core/src",
+    "packages/ui/src"
+  ],
+  "exclude": ["node_modules", "dist", "build"]
 }

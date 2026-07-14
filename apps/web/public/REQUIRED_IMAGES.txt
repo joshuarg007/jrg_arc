@@ -1,0 +1,154 @@
+================================================================================
+                     REQUIRED PLACEHOLDER IMAGES
+                     Portfolio Expanded Panels
+================================================================================
+
+Upload these images to: /apps/web/public/images/
+
+All images should be optimized for web (WebP or compressed JPG recommended).
+Suggested dimensions provided below.
+
+================================================================================
+ABOUT PANEL IMAGES
+================================================================================
+
+1. profile-photo.jpg
+   - Description: Professional headshot
+   - Dimensions: 400x400px (square)
+   - Location: Used in expanded About panel hero section
+   - Notes: Clean background, professional attire preferred
+
+2. about-workspace.jpg
+   - Description: Workspace/office setup photo
+   - Dimensions: 400x400px (square, displayed in grid)
+   - Location: About panel gallery section
+   - Notes: Shows your work environment, monitors, desk setup
+
+3. about-conference.jpg
+   - Description: Speaking at conference or team meeting
+   - Dimensions: 400x400px (square, displayed in grid)
+   - Location: About panel gallery section
+   - Notes: Professional context, collaborative environment
+
+4. about-coding.jpg
+   - Description: Working on code/multiple monitors
+   - Dimensions: 400x400px (square, displayed in grid)
+   - Location: About panel gallery section
+   - Notes: Shows technical work, screens with code visible
+
+5. about-outdoors.jpg
+   - Description: Hiking or outdoor activity
+   - Dimensions: 400x400px (square, displayed in grid)
+   - Location: About panel gallery section
+   - Notes: Shows personality beyond work
+
+================================================================================
+HOBBIES PANEL IMAGES - Main Cards (4 images)
+================================================================================
+
+6. hobby-chess.jpg
+   - Description: Chess board setup or playing position
+   - Dimensions: 600x280px (wide card header)
+   - Location: Hobbies panel, Chess hobby card
+   - Notes: Board with pieces, mid-game position looks best
+
+7. hobby-poker.jpg
+   - Description: Poker chips or cards arrangement
+   - Dimensions: 600x280px (wide card header)
+   - Location: Hobbies panel, Poker hobby card
+   - Notes: Chips stacked, cards fanned, casino aesthetic
+
+8. hobby-fitness.jpg
+   - Description: Gym or workout environment
+   - Dimensions: 600x280px (wide card header)
+   - Location: Hobbies panel, Fitness hobby card
+   - Notes: Weights, gym equipment, action shot preferred
+
+9. hobby-hiking.jpg
+   - Description: Trail or mountain landscape photo
+   - Dimensions: 600x280px (wide card header)
+   - Location: Hobbies panel, Hiking hobby card
+   - Notes: Southwest desert trails, scenic vista
+
+================================================================================
+HOBBIES PANEL IMAGES - Gallery (6 images)
+================================================================================
+
+10. hobby-trail-vista.jpg
+    - Description: Scenic hiking trail view
+    - Dimensions: 600x450px (4:3 aspect ratio)
+    - Location: Hobbies panel gallery section
+    - Notes: Wide landscape shot, desert or mountain scenery
+
+11. hobby-chess-tournament.jpg
+    - Description: Chess game or tournament
+    - Dimensions: 600x450px (4:3 aspect ratio)
+    - Location: Hobbies panel gallery section
+    - Notes: Playing chess, tournament environment
+
+12. hobby-gym-setup.jpg
+    - Description: Training environment
+    - Dimensions: 600x450px (4:3 aspect ratio)
+    - Location: Hobbies panel gallery section
+    - Notes: Personal workout space or gym
+
+13. hobby-nature.jpg
+    - Description: Desert/mountain landscape
+    - Dimensions: 600x450px (4:3 aspect ratio)
+    - Location: Hobbies panel gallery section
+    - Notes: New Mexico or Southwest scenery
+
+14. hobby-books-shelf.jpg
+    - Description: Book collection or reading corner
+    - Dimensions: 600x450px (4:3 aspect ratio)
+    - Location: Hobbies panel gallery section
+    - Notes: Bookshelf, reading nook, visible titles
+
+15. hobby-outdoors-action.jpg
+    - Description: Active outdoor moment
+    - Dimensions: 600x450px (4:3 aspect ratio)
+    - Location: Hobbies panel gallery section
+    - Notes: Hiking in action, on the trail
+
+================================================================================
+SUMMARY CHECKLIST
+================================================================================
+
+[ ] About Panel (5 images):
+    [ ] profile-photo.jpg (400x400)
+    [ ] about-workspace.jpg (400x400)
+    [ ] about-conference.jpg (400x400)
+    [ ] about-coding.jpg (400x400)
+    [ ] about-outdoors.jpg (400x400)
+
+[ ] Hobbies Panel - Cards (4 images):
+    [ ] hobby-chess.jpg (600x280)
+    [ ] hobby-poker.jpg (600x280)
+    [ ] hobby-fitness.jpg (600x280)
+    [ ] hobby-hiking.jpg (600x280)
+
+[ ] Hobbies Panel - Gallery (6 images):
+    [ ] hobby-trail-vista.jpg (600x450)
+    [ ] hobby-chess-tournament.jpg (600x450)
+    [ ] hobby-gym-setup.jpg (600x450)
+    [ ] hobby-nature.jpg (600x450)
+    [ ] hobby-books-shelf.jpg (600x450)
+    [ ] hobby-outdoors-action.jpg (600x450)
+
+TOTAL: 15 images required
+
+================================================================================
+IMPLEMENTATION NOTES
+================================================================================
+
+After uploading images, update the placeholder components in:
+- /apps/web/src/components/showcase/ExpandedAboutPanel.tsx
+- /apps/web/src/components/showcase/ExpandedHobbiesPanel.tsx
+
+Replace placeholder divs with <img> tags pointing to /images/[filename]
+
+Example:
+  Before: <div style={styles.photoPlaceholder}>...</div>
+  After:  <img src="/images/profile-photo.jpg" alt="Joshua Gutierrez" style={styles.photo} />
+
+================================================================================

@@ -1,5 +1,6 @@
-﻿import { aiState } from './AIState';
+import { aiState } from './AIState';
 import { behaviorRegistry } from './BehaviorRegistry';
+import { logger } from '../utils/logger';
 
 type QG = {
   set: (key: string, value: unknown) => void;
@@ -9,7 +10,8 @@ type QG = {
   behaviors: {
     factories: () => string[];
     list: () => string[];
-    activate: (name: string, options?: unknown) => void;
+    activate: (name: string, options?: unknown) => () => void;
+    deactivate: (name: string) => boolean;
   };
 };
 
@@ -47,8 +49,11 @@ export function setupAIBridge(): void {
       factories: () => behaviorRegistry.listFactories(),
       list: () => behaviorRegistry.listActive(),
       activate: (name, options) => {
-        behaviorRegistry.activate(name, options);
-      },      
+        return behaviorRegistry.activate(name, options);
+      },
+      deactivate: (name) => {
+        return behaviorRegistry.deactivate(name);
+      },
     },    
   };
 
@@ -59,5 +64,5 @@ export function setupAIBridge(): void {
     enumerable: false,
   });
 
-  console.log('[QG] Dev bridge installed. Type qg.help() for usage.');
+  logger.info('Dev bridge installed. Type qg.help() for usage.');
 }
